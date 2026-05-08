@@ -12,25 +12,42 @@ body{
     overflow:hidden;
     font-family:Arial;
 
-    background-image:url("./image.png");
+    background-image:url("image.png");
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
 }
 
-/* خلفية متحركة */
+/* طبقة تغميق */
+body::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    rgba(0,0,0,0.45);
+
+    z-index:-2;
+}
+
+/* إضاءة متحركة */
 body::before{
     content:"";
     position:absolute;
+
     width:900px;
     height:900px;
+
     background:
     radial-gradient(circle,
     rgba(0,255,255,0.12),
     transparent 70%);
 
-    animation:bgMove 8s infinite alternate ease-in-out;
     filter:blur(50px);
+
+    animation:bgMove 8s infinite alternate ease-in-out;
+
+    z-index:-1;
 }
 
 @keyframes bgMove{
@@ -42,11 +59,46 @@ body::before{
     }
 }
 
+/* زر ملء الشاشة */
+#fullscreenBtn{
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    padding:12px 22px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#00e5ff;
+
+    color:black;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    z-index:999;
+
+    box-shadow:
+    0 0 20px #00e5ff;
+
+    transition:0.3s;
+}
+
+#fullscreenBtn:hover{
+    transform:scale(1.05);
+}
+
 /* الساعة */
 .clock{
     width:450px;
     height:450px;
+
     position:relative;
+
     border-radius:50%;
 
     background:
@@ -69,7 +121,6 @@ body::before{
     animation:float 5s infinite ease-in-out;
 }
 
-/* حركة الساعة */
 @keyframes float{
     0%{
         transform:translateY(0px);
@@ -82,7 +133,7 @@ body::before{
     }
 }
 
-/* الحلقات الداخلية */
+/* الحلقات */
 .clock::before{
     content:"";
     position:absolute;
@@ -117,7 +168,6 @@ body::before{
     transition:0.3s;
 }
 
-/* حركة عند المرور */
 .number:hover{
     transform:
     translate(-50%,-50%)
@@ -145,7 +195,7 @@ body::before{
     opacity:0.4;
 }
 
-/* علامات الساعات */
+/* التدرجات الكبيرة */
 .mark.big{
     height:32px;
     width:6px;
