@@ -1,0 +1,268 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial;
+
+    background-image:url("./image.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+/* خلفية متحركة */
+body::before{
+    content:"";
+    position:absolute;
+    width:900px;
+    height:900px;
+    background:
+    radial-gradient(circle,
+    rgba(0,255,255,0.12),
+    transparent 70%);
+
+    animation:bgMove 8s infinite alternate ease-in-out;
+    filter:blur(50px);
+}
+
+@keyframes bgMove{
+    from{
+        transform:translate(-100px,-50px) scale(1);
+    }
+    to{
+        transform:translate(100px,50px) scale(1.2);
+    }
+}
+
+/* الساعة */
+.clock{
+    width:450px;
+    height:450px;
+    position:relative;
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+    );
+
+    backdrop-filter:blur(12px);
+
+    border:
+    10px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 0 60px rgba(0,255,255,0.15),
+    inset 0 0 40px rgba(255,255,255,0.05),
+    0 0 120px rgba(0,0,0,0.8);
+
+    animation:float 5s infinite ease-in-out;
+}
+
+/* حركة الساعة */
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* الحلقات الداخلية */
+.clock::before{
+    content:"";
+    position:absolute;
+    inset:20px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,0.08);
+}
+
+.clock::after{
+    content:"";
+    position:absolute;
+    inset:45px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+/* الأرقام */
+.number{
+    position:absolute;
+
+    color:#ffe082;
+
+    font-size:30px;
+    font-weight:bold;
+
+    transform:translate(-50%,-50%);
+
+    text-shadow:
+    0 0 8px rgba(255,224,130,0.8),
+    0 0 20px rgba(255,224,130,0.4);
+
+    transition:0.3s;
+}
+
+/* حركة عند المرور */
+.number:hover{
+    transform:
+    translate(-50%,-50%)
+    scale(1.2);
+
+    color:white;
+}
+
+/* التدرجات */
+.mark{
+    position:absolute;
+
+    width:4px;
+    height:18px;
+
+    background:white;
+
+    left:50%;
+    top:10px;
+
+    transform-origin:center 215px;
+
+    border-radius:20px;
+
+    opacity:0.4;
+}
+
+/* علامات الساعات */
+.mark.big{
+    height:32px;
+    width:6px;
+
+    opacity:1;
+
+    background:#00e5ff;
+
+    box-shadow:
+    0 0 10px #00e5ff,
+    0 0 20px #00e5ff;
+}
+
+/* العقارب */
+.hand{
+    position:absolute;
+
+    bottom:50%;
+    left:50%;
+
+    transform-origin:bottom;
+
+    border-radius:20px;
+}
+
+/* الساعات */
+.hour{
+    width:10px;
+    height:110px;
+
+    background:white;
+
+    box-shadow:
+    0 0 15px white;
+}
+
+/* الدقائق */
+.minute{
+    width:6px;
+    height:160px;
+
+    background:#00e5ff;
+
+    box-shadow:
+    0 0 20px #00e5ff;
+}
+
+/* الثواني */
+.second{
+    width:3px;
+    height:185px;
+
+    background:#ff3b3b;
+
+    box-shadow:
+    0 0 20px #ff3b3b,
+    0 0 40px #ff3b3b;
+}
+
+/* مركز الساعة */
+.center{
+    width:22px;
+    height:22px;
+
+    background:white;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    z-index:100;
+
+    box-shadow:
+    0 0 20px white,
+    0 0 40px white;
+}
+
+/* التاريخ */
+.date{
+    position:absolute;
+
+    bottom:90px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#ddd;
+
+    font-size:20px;
+
+    letter-spacing:2px;
+
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.4);
+}
+
+/* الوقت الرقمي */
+.digital{
+    position:absolute;
+
+    top:95px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:white;
+
+    font-size:32px;
+    font-weight:bold;
+
+    letter-spacing:4px;
+
+    text-shadow:
+    0 0 15px rgba(255,255,255,0.6);
+}
