@@ -10,28 +10,34 @@
 
 <body>
 
-<!-- زر ملء الشاشة -->
-<button id="fullscreenBtn">⛶ Full Screen</button>
+    <section class="front">
+        <!-- زر ملء الشاشة -->
+        <button id="fullscreenBtn">⛶ Full Screen</button>
 
-<!-- الساعة -->
-<div class="clock" id="clock">
+        <!-- الساعة -->
+        <div class="clock" id="clock">
 
-    <!-- الوقت الرقمي -->
-    <div class="digital" id="digital"></div>
+            <div class="digital" id="digital"></div>
 
-    <!-- العقارب -->
-    <div class="hand hour" id="hour"></div>
-    <div class="hand minute" id="minute"></div>
-    <div class="hand second" id="second"></div>
+            <div class="hand hour" id="hour"></div>
+            <div class="hand minute" id="minute"></div>
+            <div class="hand second" id="second"></div>
 
-    <!-- مركز الساعة -->
-    <div class="center"></div>
+            <div class="center"></div>
 
-    <!-- التاريخ -->
-    <div class="date" id="date"></div>
+            <div class="date" id="date"></div>
 
-</div>
-
+        </div>
+    </section>
+    <section class="google">
+        <!-- Google تحت الساعة -->
+        <div class="google-box">
+            <iframe 
+                src="https://www.google.com/webhp?igu=1"
+                id="googleFrame">
+            </iframe>
+        </div>
+    </section>
 <script src="clock.js"></script>
 
 </body>
