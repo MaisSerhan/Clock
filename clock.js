@@ -1,45 +1,47 @@
 const clock = document.getElementById("clock");
 
-/* إنشاء التدرجات */
-for(let i=0;i<60;i++){
+/* نحسب مركز الساعة الحقيقي */
+const rect = clock.getBoundingClientRect();
+const centerX = rect.width / 2;
+const centerY = rect.height / 2;
+
+/* التدرجات */
+for(let i = 0; i < 60; i++){
 
     const mark = document.createElement("div");
     mark.className = "mark";
 
+    mark.style.left = "50%";
+    mark.style.top = "54%";
+
     mark.style.transform =
-    `translateX(-50%) rotate(${i*6}deg)`;
+    `translate(-50%, -100%) rotate(${i * 6}deg) translateY(-200px)`;
 
     if(i % 5 === 0){
-        mark.style.height = "28px";
-        mark.style.width = "5px";
-        mark.style.opacity = "1";
+        mark.classList.add("big");
     }
 
     clock.appendChild(mark);
 }
 
-/* إنشاء الأرقام */
-for(let i=1;i<=12;i++){
+/* الأرقام */
+for(let i = 1; i <= 12; i++){
 
     const number = document.createElement("div");
-
     number.className = "number";
     number.innerText = i;
 
-    const angle = (i-3) * (Math.PI*2)/12;
+    const angle = (i - 3) * (Math.PI * 2) / 12;
+    const radius = 160;
 
-    /* إبعاد الأرقام عن التدرجات */
-    const radius = 156;
+    const x = centerX + radius * Math.cos(angle);
+    const y = centerY + radius * Math.sin(angle);
 
-    const x = 210+ radius*Math.cos(angle);
-    const y = 210 + radius*Math.sin(angle);
-
-    number.style.left = `${x}px`;
-    number.style.top = `${y}px`;
+    number.style.left = `${x-10}px`;
+    number.style.top = `${y-20}px`;
 
     clock.appendChild(number);
 }
-
 /* تحديث الساعة */
 function updateClock(){
 
@@ -62,34 +64,28 @@ function updateClock(){
     document.getElementById("hour").style.transform =
     `translateX(-50%) rotate(${hourDeg}deg)`;
 
-    /* التاريخ */
-    const options = {
+    document.getElementById("digital").innerText =
+    now.toLocaleTimeString('en-EG');
+
+    document.getElementById("date").innerText =
+    now.toLocaleDateString('ar-EG', {
         weekday:'long',
         year:'numeric',
         month:'long',
         day:'numeric'
-    };
-
-    document.getElementById("date").innerText =
-    now.toLocaleDateString('ar-EG',options);
+    });
 }
 
-setInterval(updateClock,1000);
-
+setInterval(updateClock, 1000);
 updateClock();
-/* ملء الشاشة */
-const fullscreenBtn =
-document.getElementById("fullscreenBtn");
 
-fullscreenBtn.addEventListener("click",()=>{
+/* زر ملء الشاشة */
+document.getElementById("fullscreenBtn")
+.addEventListener("click", () => {
 
     if(!document.fullscreenElement){
-
-        document.documentElement
-        .requestFullscreen();
-
+        document.documentElement.requestFullscreen();
     }else{
-
         document.exitFullscreen();
     }
 });
