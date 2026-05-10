@@ -106,6 +106,24 @@ body::before{
     box-shadow:
     0 0 50px rgba(0,0,0,0.5),
     inset 0 0 20px rgba(255,255,255,0.05);
+    /* حركة الساعة */
+    animation: floatClock 4s ease-in-out infinite;
+}
+
+/* التحريك للأعلى والأسفل */
+@keyframes floatClock{
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-20px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
 }
 
 /* العقارب */
@@ -117,7 +135,7 @@ body::before{
 }
 
 .hour{ width:10px; height:110px; background:white; }
-.minute{ width:6px; height:160px; background:#00e5ff; }
+.minute{width:6px;height:160px;background: #000000;}
 .second{ width:3px; height:185px; background:#ff3b3b; }
 
 /* مركز */
@@ -187,7 +205,7 @@ body::before{
 .mark {
     position: absolute;
     width: 4px;
-    height: 18px;
+    height: 14px;
     background: white;
     left: 50%;
     top: 60%;
@@ -196,17 +214,17 @@ body::before{
 }
 
 .mark.big {
-    height: 30px;
+    height: 22px;
     width: 6px;
     opacity: 1;
-    background: #00e5ff;
-    box-shadow: 0 0 10px #00e5ff;
+    background: #052225;
+    box-shadow: 0 0 2px #af517b;
 }
 
 /* الأرقام */
 .number {
     position: absolute;
-    color: #ffe082;
+    color: #410419;
     font-size: 28px;
     font-weight: bold;
     transform: translate(-50%,-50%);
