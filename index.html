@@ -1,44 +1,89 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ساعة حائط فخمة</title>
+    <title>ساعة مسجد ذكية</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="clock.css">
-    <link rel="icon" type="image/png" href="https://png.pngtree.com/png-vector/20240413/ourmid/pngtree-clock-icon-with-arrows-pointer-vector-for-your-web-and-mobile-png-image_12277196.png">
 </head>
 
 <body>
 
-    <section class="front">
-        <!-- زر ملء الشاشة -->
-        <button id="fullscreenBtn">⛶ Full Screen</button>
+<section class="front">
 
-        <!-- الساعة -->
-        <div class="clock" id="clock">
+    <button id="fullscreenBtn">⛶ Full Screen</button>
 
-            <div class="digital" id="digital"></div>
+    <!-- الساعة -->
+    <div class="clock" id="clock">
 
-            <div class="hand hour" id="hour"></div>
-            <div class="hand minute" id="minute"></div>
-            <div class="hand second" id="second"></div>
+        <div class="digital" id="digital"></div>
 
-            <div class="center"></div>
+        <div class="hand hour" id="hour"></div>
+        <div class="hand minute" id="minute"></div>
+        <div class="hand second" id="second"></div>
 
-            <div class="date" id="date"></div>
+        <div class="center"></div>
+
+        <div class="date" id="date"></div>
+    </div>
+
+    <!-- الصلاة -->
+    <div class="prayer-box">
+
+        <div class="prayer-title">🕌 أوقات الصلاة</div>
+
+        <div class="prayer-row">
+
+            <div class="prayer-card">
+                <div id="nextPrayer"></div>
+            </div>
+
+            <div class="prayer-card">
+                <div id="remainingTime"></div>
+            </div>
 
         </div>
-    </section>
-    <section class="google">
-        <!-- Google تحت الساعة -->
-        <div class="google-box">
-            <iframe 
-                src="https://www.google.com/webhp?igu=1"
-                id="googleFrame">
-            </iframe>
-        </div>
-    </section>
+
+    </div>
+
+</section>
+
+<!-- التطبيقات -->
+<section class="google">
+
+    <div class="apps-bar">
+
+        <button class="app-btn" onclick="openApp('radio')">
+            <div class="icon">📻</div>
+            <div class="title">إذاعة القرآن</div>
+        </button>
+
+        <button class="app-btn" onclick="openApp('search')">
+            <div class="icon">🔍</div>
+            <div class="title">بحث</div>
+        </button>
+
+        <button class="app-btn" onclick="openApp('prayer')">
+            <div class="icon">🕌</div>
+            <div class="title">الصلاة</div>
+        </button>
+
+        <button class="app-btn" onclick="openApp('quran')">
+            <div class="icon">📖</div>
+            <div class="title">القرآن</div>
+        </button>
+
+    </div>
+
+    <div class="google-box">
+        <iframe id="googleFrame" src="https://www.google.com/webhp?igu=1"></iframe>
+    </div>
+
+</section>
+
 <script src="clock.js"></script>
 
 </body>
