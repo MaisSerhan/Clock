@@ -110,8 +110,8 @@ function openApp(app){
         frame.src = "https://www.google.com/webhp?igu=1";
     }
 
-    if(app === "prayer"){
-        frame.src = "https://mawaqit.net/ar/";
+    if(app === "youtube"){
+        window.open("https://youtube.me", "_blank");
     }
 
     if(app === "quran"){
