@@ -103,7 +103,7 @@ function openApp(app){
     const frame = document.getElementById("googleFrame");
 
     if(app === "radio"){
-        frame.src = "https://www.radio.net/s/quran";
+        frame.src = "https://quran-radio.com/";
     }
 
     if(app === "search"){
@@ -115,9 +115,33 @@ function openApp(app){
     }
 
     if(app === "quran"){
-        frame.src = "https://quran.com/ar";
+        window.open("https://equran.me/list.html", "_blank");
     }
 }
+
+
+/* ================= TIME ADJUST ================= */
+function adjustTime(time, addMinutes = 0, addSeconds = 0){
+
+    let [hours, minutes] = time.split(":").map(Number);
+
+    const date = new Date();
+
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(0);
+
+    /* إضافة التعديل */
+    date.setMinutes(date.getMinutes() + addMinutes);
+    date.setSeconds(date.getSeconds() + addSeconds);
+
+    const h = String(date.getHours()).padStart(2, "0");
+    const m = String(date.getMinutes()).padStart(2, "0");
+
+    return `${h}:${m}`;
+}
+
+
 
 /* ================= PRAYER TIMES ================= */
 async function loadPrayerTimes(){
@@ -130,12 +154,23 @@ async function loadPrayerTimes(){
     const t = data.data.timings;
 
     const prayers = [
-        {name:"الفجر", time:t.Fajr},
-        {name:"الظهر", time:t.Dhuhr},
-        {name:"العصر", time:t.Asr},
-        {name:"المغرب", time:t.Maghrib},
-        {name:"العشاء", time:t.Isha}
-    ];
+
+    /* طرح دقيقة من الفجر */
+    {name:"الفجر", time: adjustTime(t.Fajr, 2, 0)},
+
+     /* الشروق */
+    {name:"الشروق", time:adjustTime(t.Sunrise,-4,0)},
+
+    {name:"الظهر", time: adjustTime(t.Dhuhr, -1,0)},
+
+    /* زيادة دقيقة للعصر */
+    {name:"العصر", time: adjustTime(t.Asr, -1, 0)},
+
+    {name:"المغرب", time: adjustTime(t.Maghrib, 6, 0)},
+
+    /* زيادة 3 دقيقة و50 ثانية للعشاء */
+    {name:"العشاء", time: adjustTime(t.Isha, 3, 0)}
+];
 
     setInterval(() => updatePrayer(prayers), 1000);
 }
