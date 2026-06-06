@@ -101,12 +101,17 @@ document.addEventListener("fullscreenchange", () => {
 document.addEventListener("click", () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        fullscreenBtn.style.display = "none";
+    }else{
+        document.exitFullscreen();
+        fullscreenBtn.style.display = "block";
     }
 });
 
 document.addEventListener("keydown", () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
+        fullscreenBtn.style.display = "none";
     }
 });
 
