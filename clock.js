@@ -98,20 +98,16 @@ document.addEventListener("fullscreenchange", () => {
 });
 
 
-document.addEventListener("keydown", (event) => {
-
-    if (event.key === "1") {
-
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            fullscreenBtn.style.display = "none";
-        } else {
-            document.exitFullscreen();
-            fullscreenBtn.style.display = "block";
-        }
-
+document.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
     }
+});
 
+document.addEventListener("keydown", () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    }
 });
 
 /* ================= APPS ================= */
