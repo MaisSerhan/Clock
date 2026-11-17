@@ -165,7 +165,7 @@ function adjustTime(time, addMinutes = 0, addSeconds = 0){
 async function loadPrayerTimes(){
 
     const res = await fetch(
-        "https://api.aladhan.com/v1/timingsByCity?city=Ramallah&country=Palestine&method=4"
+        "https://api.aladhan.com/v1/timingsByCity/17-11-2026?city=Jerusalem&country=Israel&method=3"
     );
 
     const data = await res.json();
